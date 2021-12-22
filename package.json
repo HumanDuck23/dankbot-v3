@@ -12,6 +12,9 @@
   "dependencies": {
     "axios": "^0.24.0",
     "colors": "^1.4.0",
-    "discord.js-self": "^12.0.4"
+    "cors": "^2.8.5",
+    "discord.js-self": "^12.0.4",
+    "express": "^4.17.2",
+    "socket.io": "^4.4.0"
   }
 }

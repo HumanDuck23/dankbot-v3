@@ -20,6 +20,7 @@ module.exports = class DankBot {
         this.client = new Discord.Client()
         this.active = false
         this.loggedIn = false
+        this.channel = null // channel to send messages
     }
 
     login() {
@@ -28,8 +29,20 @@ module.exports = class DankBot {
                 util.log.info(`Logging in as ${this.client.user.username}#${this.client.user.discriminator}`)
                 this.client.on("ready", () => {
                     util.log.success("Logged in!")
+                    this.loggedIn = true
+
+                    this.channel = this.client.channels.cache.find(channel => channel.id === this.config.channelID)
+                    this.client.on("message", msg => {
+                        this.msgHandler(msg)
+                    })
                 })
             })
         })
+    }
+
+    msgHandler(msg) {
+        if (msg.author.id === this.DANK_MEMER_ID) {
+
+        }
     }
 }
