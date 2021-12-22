@@ -40,9 +40,24 @@ module.exports = class DankBot {
         })
     }
 
+    // Message
+
+    sendMessage(text) {
+        try {
+            if (this.channel !== null && this.channel !== undefined) {
+                //text = util.superLowChanceBool() ? this.typo(text) : text
+                this.channel.send(text)
+                //this.lastMessageSent = new Date().getTime()
+                //this.lastMessageWasMine = true
+            }
+        } catch (e) {
+            util.log.error("Error sending message!")
+        }
+    }
+
     msgHandler(msg) {
         if (msg.author.id === this.DANK_MEMER_ID) {
-
+            this.sendMessage("Hi dank memer!")
         }
     }
 }
