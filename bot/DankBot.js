@@ -29,6 +29,7 @@ module.exports = class DankBot {
                 util.log.info(`Logging in as ${this.client.user.username}#${this.client.user.discriminator}`)
                 this.client.on("ready", () => {
                     util.log.success("Logged in!")
+                    resolve()
                     this.loggedIn = true
 
                     this.channel = this.client.channels.cache.find(channel => channel.id === this.config.channelID)
@@ -40,8 +41,11 @@ module.exports = class DankBot {
         })
     }
 
-    // Message
+    setStatus(status) {
+        this.client.user.setStatus(status)
+    }
 
+    // Message
     sendMessage(text) {
         try {
             if (this.channel !== null && this.channel !== undefined) {
@@ -57,7 +61,6 @@ module.exports = class DankBot {
 
     msgHandler(msg) {
         if (msg.author.id === this.DANK_MEMER_ID) {
-            this.sendMessage("Hi dank memer!")
         }
     }
 }
