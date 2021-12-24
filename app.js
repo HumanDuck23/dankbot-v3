@@ -40,6 +40,9 @@ let bot = null
 
 io.on("connection", (socket) => {
     socket.emit("connected")
+    if (bot !== null) {
+        socket.emit("botLoginSuccess")
+    }
 
     socket.on("startBot", (config) => {
         util.log.info("Starting bot!")

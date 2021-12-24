@@ -1,6 +1,6 @@
 const colors = require("colors")
 
-module.exports = {
+const util = {
     log: {
         success(text) {
             this.message("success", text, colors.green, "bold")
@@ -42,15 +42,29 @@ module.exports = {
     },
     time: {
         randomS(min, max) {
-            return this.random.int(min, max) * 1000
+            return util.random.int(min, max) * 1000
         },
         randomM(min, max) {
-            return this.random.int(min, max) * 1000 * 60
+            return util.random.int(min, max) * 1000 * 60
         }
     },
     string: {
         countSubstr(str, subs) {
             return str.split(subs).length
         }
+    },
+    message: {
+        containsText(msg, text) {
+            if (msg.content.toLowerCase().includes(text)) return true
+            for (let i = 0; i < msg.embeds.length; i++) {
+                const embed = msg.embeds[i]
+                if (embed.description !== undefined && embed.description.toLowerCase().includes(text)) {
+                    return true
+                }
+            }
+            return false
+        }
     }
 }
+
+module.exports = util
